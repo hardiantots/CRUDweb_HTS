@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Table</title>
+    <!-- CSS only -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <%- include('header_nav.ejs'); %>
+    <div class="container title__page">
+        <div class="container flex justify-center pt-5
+        md:pt-20">
+            <span class="block text-center font-bold text-xl">Data Table</span>
+        </div>
+        <div class="container flex justify-center mt-4">
+            <a href="/addpage"><button type="button" class="inline-block px-5 py-2 bg-green-600 text-white font-medium
+                text-xs leading-tight uppercase rounded shadow-md hover:bg-green-700 hover:shadow-lg
+                focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-800 active:shadow-lg 
+                transition duration-150 ease-in-out">
+                Add Data
+            </button></a>
+        </div>
+    </div>
+
+    <div class="overflow-x-auto relative mt-6 mb-6
+    md:flex
+    md:justify-center
+    md:-z-10
+    lg:z-0">
+        <table class="w-[80%] text-sm text-left text-black ">
+            <thead class="text-xs text-white uppercase bg-[#0E5E6F]">
+                <tr>
+                    <th scope="col" class="py-3 px-6">
+                        No.
+                    </th>
+                    <th scope="col" class="py-3 px-6">
+                        Name
+                    </th>
+                    <th scope="col" class="py-3 px-6">
+                        Username
+                    </th>
+                    <th scope="col" class="py-3 px-6">
+                        Birth Place
+                    </th>
+                    <th scope="col" class="py-3 px-6">
+                        Action
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for(var i = 0; i< data.length; i++){ %>
+                <tr class="bg-white border-b">
+                    <td scope="row" class="py-4 px-6 font-medium text-black whitespace-nowrap">
+                        <%= (i+1)%>
+                    </td>
+                    <td class="py-4 px-6">
+                        <%= data[i].name%>
+                    </td>
+                    <td class="py-4 px-6">
+                        <%= data[i].username%>
+                    </td>
+                    <td class="py-4 px-6">
+                        <%= data[i].birthplace%>
+                    <td class="py-4 px-6">
+                        <div class="button__action flex">
+                            <a href="/editpage/<%= data[i].id%>">
+                                <button type="button"
+                                class="button-update px-5 py-2 mb-2 bg-blue-600 text-white font-medium text-xs leading-tight 
+                                uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:shadow-lg focus:outline-none 
+                                focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">Edit
+                            </button>
+                            </a>
+                            <a href="/delete/<%= data[i].id%>">
+                                <button type="button" 
+                                class="inline-block ml-2 px-3 py-2 bg-red-600 text-white 
+                                font-medium text-xs leading-tight uppercase rounded 
+                                shadow-md hover:bg-red-700 hover:shadow-lg focus:shadow-lg 
+                                focus:outline-none focus:ring-0 active:bg-red-800 
+                                active:shadow-lg transition duration-150 ease-in-out"
+                                onclick="return confirm('Apakah anda yakin mau menghapus data tersebut?')"
+                                >Delete</button>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
